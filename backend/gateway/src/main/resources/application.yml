@@ -15,7 +15,22 @@ spring:
           uri:
             lb://Login-Server
           predicates:
-            - Path=/user/login, /user/register, /user/register/confirm
+            - Path=/user/login, /user/register, /user/register/confirm, /user/account
+        - id: User-Server
+          uri:
+            lb://User-Server
+          predicates:
+            - Path=/user/image/**, /user/info/**, /user/device
+        - id: Health-Server
+          uri:
+            lb://Health-Server
+          predicates:
+            - Path=/healthInfo/**
+        - id: Medical-Server
+          uri:
+            lb://Medical-Server
+          predicates:
+            - Path=/user/medicalInfo/**
   datasource:
     url: jdbc:mysql://elderlycare-db.mysql.database.azure.com:3306/elderlycare
     username: ${mysql.connect.username}

@@ -32,5 +32,8 @@ public class LoginController {
         return loginService.confirm(token);
     }
 
-
+    @RequestMapping("/user/account")
+    public Account accountInfo(@RequestParam("id") int userID) {
+        return loginService.getAccountInfo(userID);
+    }
 }

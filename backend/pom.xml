@@ -18,6 +18,9 @@
         <module>EurekaService</module>
         <module>gateway</module>
         <module>loginService</module>
+        <module>userService</module>
+        <module>healthService</module>
+        <module>MedicalService</module>
     </modules>
 
     <properties>

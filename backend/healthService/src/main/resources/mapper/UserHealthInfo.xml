@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "<http://mybatis.org/dtd/mybatis-3-mapper.dtd>">
+
+<mapper namespace="com.elderlycare.mapper.UserHealthInfoMapper">
+
+    <resultMap id="aveResultMap" type="com.elderlycare.pojo.UserHealthInfo">
+        <result property="timestamp" column="timeGroup"/>
+        <result property="heartRate" column="avg(heart_rate)"/>
+        <result property="oxygen" column="avg(oxygen)"/>
+        <result property="temperature" column="avg(temperature)"/>
+    </resultMap>
+
+    <select id="getAvgHours" resultMap="aveResultMap">
+        select DATE_FORMAT(timestamp,'%Y%m%d%H')timeGroup, avg(heart_rate), avg(oxygen), avg(temperature)
+        from user_health_info
+        where timestamp between #{startTime} and #{endTime}
+        And acct_id = #{id}
+        group by timeGroup;
+    </select>
+    <select id="getAvgDays" resultMap="aveResultMap">
+        select DATE_FORMAT(timestamp,'%Y%m%d')timeGroup, avg(heart_rate), avg(oxygen), avg(temperature)
+        from user_health_info
+        where timestamp between #{startTime} and #{endTime}
+        And acct_id = #{id}
+        group by timeGroup;
+    </select>
+    <!--    <select id="getAvgWeeks" resultMap="aveResultMap">-->
+    <!--        select DATE_FORMAT(timestamp,'%Y%u')timeGroup, avg(heart_rate), avg(oxygen), avg(temperature)-->
+    <!--        from user_health_info-->
+    <!--        where timestamp between #{startTime} and #{endTime}-->
+    <!--        And acct_id = #{id}-->
+    <!--        group by timeGroup;-->
+    <!--    </select>-->
+    <select id="getAvgMonths" resultMap="aveResultMap">
+        select DATE_FORMAT(timestamp,'%Y%m')timeGroup, avg(heart_rate), avg(oxygen), avg(temperature)
+        from user_health_info
+        where timestamp between #{startTime} and #{endTime}
+        And acct_id = #{id}
+        group by timeGroup;
+    </select>
+
+
+    <insert id="insertBatch">
+        insert into user_health_info values
+        <foreach collection="list" item="item" separator=",">
+            ( #{item.acctID}, #{item.timestamp}, #{item.heartRate}, #{item.temperature}, #{item.oxygen} )
+        </foreach>
+    </insert>
+
+</mapper>

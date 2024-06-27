@@ -152,4 +152,8 @@ public class LoginService {
 
         return "Account is activated";
     }
+
+    public Account getAccountInfo(int userID) {
+        return accountMapper.getAccountAndRoleByID(userID);
+    }
 }

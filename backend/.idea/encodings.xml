@@ -3,6 +3,8 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/EurekaService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/EurekaService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MedicalService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MedicalService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blogService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blogService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
@@ -13,6 +15,8 @@
     <file url="file://$PROJECT_DIR$/dao/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/healthService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/healthService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/loginService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/loginService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/security/src/main/java" charset="UTF-8" />
@@ -21,6 +25,10 @@
     <file url="file://$PROJECT_DIR$/service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/userManagementService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/userManagementService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/userService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/userService/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
