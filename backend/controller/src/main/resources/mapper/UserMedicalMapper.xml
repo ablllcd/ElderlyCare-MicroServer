@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "<http://mybatis.org/dtd/mybatis-3-mapper.dtd>">
+<mapper namespace="com.elderlycare.mapper.medicineManagement.MedicineMapper">
+
+    <insert id="insertBatch">
+        insert into user_medicine values
+        <foreach collection="list" item="item" separator=",">
+            (NULL, #{item.userId}, #{item.medicineName}, #{item.medicineType}, #{item.startTime}, #{item.frequency}, #{item.amount} )
+        </foreach>
+    </insert>
+
+    <resultMap id="MedicinesMap" type="com.elderlycare.pojo.Requests.MultiTimeMedicineRequest">
+<!--        <id property="medicineId" column="medicine_id"/>-->
+        <result property="userId" column="acct_id"/>
+        <result property="medicineName" column="medicine_name"/>
+        <result property="medicineType" column="medicine_type"/>
+        <result property="frequency" column="frequency"/>
+        <result property="amount" column="amount"/>
+        <collection property="startTimes" ofType="java.lang.String">
+            <result column="start_time"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectAllMedicines" resultMap="MedicinesMap">
+        select * from user_medicine
+        where acct_id = #{uid}
+    </select>
+
+
+</mapper>

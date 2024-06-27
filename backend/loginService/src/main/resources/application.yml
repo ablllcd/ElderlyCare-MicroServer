@@ -1,0 +1,46 @@
+server:
+  port: 9010
+
+spring:
+  config:
+    import: classpath:password.yml
+  application:
+    name: Login-Server
+  datasource:
+    url: jdbc:mysql://elderlycare-db.mysql.database.azure.com:3306/elderlycare
+    username: ${mysql.connect.username}
+    password: ${mysql.connect.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    password: ${email.password}
+    port: 465
+    username: 1401702664@qq.com
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          starttls:
+            enable: true
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 350MB
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#logging:
+#  file:
+#    path: D:\HKU\MSc-Project\ElderlyCare\backend
+#    name: spring.log
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9001/eureka/

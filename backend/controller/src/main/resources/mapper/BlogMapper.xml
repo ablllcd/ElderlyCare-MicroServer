@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "<http://mybatis.org/dtd/mybatis-3-mapper.dtd>">
+<mapper namespace="com.elderlycare.mapper.BlogHomePage.BlogMapper">
+
+    <resultMap id="BlogAuthorMap" type="com.elderlycare.pojo.Responses.BlogResponse">
+        <result property="blogID" column="blog_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="address" column="address"/>
+        <result property="detailedAddress" column="detailed_address"/>
+        <result property="editTime" column="edit_time"/>
+        <result property="likes" column="likes"/>
+        <result property="visibility" column="visibility"/>
+        <result property="userID" column="user_acct_id"/>
+        <result property="userName" column="name"/>
+        <result property="userProfileURI" column="picture_path"/>
+    </resultMap>
+
+    <select id="getBlogAndUser" resultMap="BlogAuthorMap">
+        select *
+        from blog, user_basic_info
+        where blog.user_acct_id = user_basic_info.acct_id
+        And blog.blog_id = #{blogID}
+    </select>
+
+    <select id="getBlogUserList" resultMap="BlogAuthorMap">
+        select *
+        from blog, user_basic_info
+        where blog.user_acct_id = user_basic_info.acct_id
+        order by edit_time desc
+    </select>
+
+    <select id="searchBlogUserList" resultMap="BlogAuthorMap">
+        select *
+        from blog, user_basic_info
+        where blog.user_acct_id = user_basic_info.acct_id
+        And blog.title like CONCAT('%', #{searchKey}, '%')
+    </select>
+
+</mapper>
