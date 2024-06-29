@@ -29,6 +29,12 @@ spring:
     multipart:
       max-file-size: 300MB
       max-request-size: 350MB
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ${rabbitmq.username}
+    password: ${rabbitmq.password}
+    virtual-host: /
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml

@@ -5,13 +5,13 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.elderlycare.handler.exceptions.LoginRegisterException;
 import com.elderlycare.mapper.AccountMapper;
 import com.elderlycare.mapper.RoleMapper;
-import com.elderlycare.mapper.UserInfoMapper;
 import com.elderlycare.mapper.VerifyCodeMapper;
 import com.elderlycare.pojo.*;
 import com.elderlycare.pojo.Responses.LoginRegisterResponse;
 import com.elderlycare.utils.EmailUtils;
 import com.elderlycare.utils.JwtUtils;
 import com.elderlycare.utils.NetUtils;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,7 +39,7 @@ public class LoginService {
     @Autowired
     private EmailUtils emailUtils;
     @Autowired
-    private UserInfoMapper userInfoMapper;
+    private RabbitTemplate rabbitTemplate;
 
     public LoginRegisterResponse login(Account userInput) {
         // 用户验证
@@ -148,7 +148,7 @@ public class LoginService {
         UserBasicInfo userBasicInfo = new UserBasicInfo();
         userBasicInfo.setAcctID(account.getId());
         userBasicInfo.setPicturePath("default.png");
-        userInfoMapper.insert(userBasicInfo);
+        rabbitTemplate.convertAndSend("userservice.fanout", null, userBasicInfo);
 
         return "Account is activated";
     }

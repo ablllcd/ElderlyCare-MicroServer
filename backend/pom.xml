@@ -10,9 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>controller</module>
-        <module>service</module>
-        <module>dao</module>
         <module>common</module>
         <module>blogService</module>
         <module>EurekaService</module>
